@@ -71,8 +71,8 @@ async fn main() -> Result<()> {
     }
 }
 
-async fn run(tcp: TcpStream, serial: SerialStream) -> Result<()> {
-    let (mut tcp_rd, mut tcp_wr) = tokio::io::split(tcp);
+async fn run(mut tcp: TcpStream, serial: SerialStream) -> Result<()> {
+    let (mut tcp_rd, mut tcp_wr) = tcp.split();
     let (mut ser_rd, mut ser_wr) = tokio::io::split(serial);
 
     tokio::select! {
