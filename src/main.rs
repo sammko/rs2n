@@ -29,7 +29,7 @@ struct Args {
     baud_rate: u32,
 }
 
-#[tokio::main]
+#[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<()> {
     std::env::set_var("RUST_LOG", "debug");
     pretty_env_logger::init();
